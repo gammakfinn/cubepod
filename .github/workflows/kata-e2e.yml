@@ -1,6 +1,8 @@
 name: Kata E2E
 
 on:
+  push:
+    branches: ['diag/**']  # diagnostic branch only, fork-local run
   pull_request:
     branches: [main]
   workflow_dispatch:
