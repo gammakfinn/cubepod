@@ -1,6 +1,7 @@
 # Sourced by the isolated kind runner, never run against an arbitrary kubeconfig.
 source "$ROOT/test/kata-e2e/versions.env"
 KATA_HERE="$ROOT/test/kata-e2e"
+source "$KATA_HERE/diag/hotplug-probe.sh"
 KATA_WATCH_PID=""
 KATA_ACTIVE=0
 kata_node() {
@@ -122,6 +123,7 @@ for p in os.listdir("/proc"):
 print(json.dumps(found,indent=2));assert found,"No actual selected VMM process"' "$KATA_VMM" >"$ARTIFACTS/actual-vmm.json"
   k get pod kata-smoke -o yaml >"$ARTIFACTS/kata-smoke.yaml"
   k delete pod kata-smoke --wait=true --timeout=60s
+  kata_fc_hotplug_probe
   sed "s/CLUSTER_PLACEHOLDER/$CLUSTER_NAME/g" "$KATA_HERE/csi.yaml" | k apply -f -
   k rollout status statefulset/hostpath -n cubepod-csi --timeout=240s
 }
