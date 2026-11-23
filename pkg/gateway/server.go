@@ -78,6 +78,7 @@ const (
 	FeatureGateE2BFilesystemWatch       = "E2BFilesystemWatch"
 	FeatureGateE2BSecretsAPI            = "E2BSecretsAPI"
 	FeatureGateSandboxEventsAndWebhooks = "SandboxEventsAndWebhooks"
+	FeatureGateFirecrackerVolumeNFS     = "FirecrackerVolumeNFS"
 )
 
 // FeatureGates holds gateway feature gate enablement flags.
@@ -94,6 +95,7 @@ func DefaultFeatureGates() FeatureGates {
 		FeatureGateE2BFilesystemWatch:       true,
 		FeatureGateE2BSecretsAPI:            true,
 		FeatureGateSandboxEventsAndWebhooks: true,
+		FeatureGateFirecrackerVolumeNFS:     false,
 	}
 }
 
